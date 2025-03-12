@@ -5,10 +5,12 @@ import { providePrimeNG } from 'primeng/config';
 import Material from '@primeng/themes/material';
 import { routes } from './app.routes';
 
-import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { provideTranslateService, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient } from '@angular/common/http';
+import { authConfig } from './auth/auth.config';
+import { authInterceptor, provideAuth } from 'angular-auth-oidc-client';
 
 const httpLoaderFactory: (http: HttpClient) => TranslateHttpLoader = (
   http: HttpClient
@@ -24,7 +26,7 @@ export const appConfig: ApplicationConfig = {
         preset: Material,
       },
     }),
-    provideHttpClient(),
+    provideHttpClient(withInterceptors([authInterceptor()])),
     provideTranslateService({
       loader: {
         provide: TranslateLoader,
@@ -32,5 +34,6 @@ export const appConfig: ApplicationConfig = {
         deps: [HttpClient],
       },
     }),
+    provideAuth(authConfig),
   ],
 };

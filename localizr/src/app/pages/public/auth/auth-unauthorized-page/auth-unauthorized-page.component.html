@@ -1,0 +1,18 @@
+<div class="full-page-container">
+  <div class="info-panel center">
+    <p-fieldset
+      [legend]="'auth.unauthorized.title' | translate"
+      class="small-panel"
+    >
+      <p translate="auth.unauthorized.message"></p>
+      <div class="flex flex-row gap-1">
+        <p-button severity="secondary" size="small"
+          ><label translate="button.register"></label
+        ></p-button>
+        <p-button size="small" (click)="openIdConnectLogin()"
+          ><label translate="button.login"></label
+        ></p-button>
+      </div>
+    </p-fieldset>
+  </div>
+</div>
