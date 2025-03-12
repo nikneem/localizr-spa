@@ -1,0 +1,37 @@
+<p-menubar [model]="items" class="fixed-top">
+  <ng-template #start> </ng-template>
+  <ng-template #item let-item let-root="root">
+    <ng-container *ngIf="item.route; else urlRef">
+      <a [routerLink]="item.route" class="p-menubar-item-link">
+        <span *ngIf="item.icon" [class]="item.icon"></span>
+        <span class="ml-2">{{ item.label }}</span>
+      </a>
+    </ng-container>
+    <ng-template #urlRef>
+      <a
+        *ngIf="item.url; else noLink"
+        [href]="item.url"
+        class="p-menubar-item-link"
+      >
+        <span *ngIf="item.icon" [class]="item.icon"></span>
+        <span class="ml-2">{{ item.label }}</span>
+      </a>
+    </ng-template>
+    <ng-template #noLink>
+      <div class="p-menubar-item-link">
+        <span *ngIf="item.icon" [class]="item.icon"></span>
+        <span class="ml-2">{{ item.label }}</span>
+      </div>
+    </ng-template>
+  </ng-template>
+  <ng-template #end>
+    <div class="flex flex-row gap-1">
+      <p-button severity="secondary" size="small"
+        ><label translate="button.register"></label
+      ></p-button>
+      <p-button size="small" (click)="openIdConnectLogin()"
+        ><label translate="button.login"></label
+      ></p-button>
+    </div>
+  </ng-template>
+</p-menubar>

@@ -1,0 +1,25 @@
+.full-page-container {
+  background-color: linear-gradient(to bottom, #444, #222);
+  background-image: url(/images/home-landingpage-background-dark.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.info-panel {
+  background-color: var(--p-content-background);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  h1 {
+    font-size: 4rem;
+    font-weight: 100;
+    margin: 0;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  .full-page-container {
+    background-color: linear-gradient(to bottom, #fff, #ddd);
+    background-image: url(/images/home-landingpage-background-light.jpg);
+  }
+}
