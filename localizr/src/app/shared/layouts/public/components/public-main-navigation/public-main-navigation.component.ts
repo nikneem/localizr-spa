@@ -7,11 +7,8 @@ import { ButtonModule } from 'primeng/button';
 import { TranslateDirective } from '@ngx-translate/core';
 import { OidcSecurityService } from 'angular-auth-oidc-client';
 import { Selector, Store } from '@ngxs/store';
-import {
-  UserLoginState,
-  IUserLoginStateModel,
-} from '../../../../../states/user/user-state';
 import { UserLoginSelectors } from '../../../../../states/user/user-selectors';
+import { IUserLoginStateModel } from '../../../../../states/user/user-models';
 
 @Component({
   selector: 'lcl-public-main-navigation',

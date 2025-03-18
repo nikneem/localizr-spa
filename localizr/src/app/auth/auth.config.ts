@@ -12,6 +12,6 @@ export const authConfig: PassedInitialConfig = {
     useRefreshToken: true,
     renewTimeBeforeTokenExpiresInSeconds: 30,
     triggerAuthorizationResultEvent: true,
-    secureRoutes: ['https://localhost:7187'],
+    secureRoutes: ['https://localhost:7215', 'https://localizr.hexmaster.nl'],
   },
 };

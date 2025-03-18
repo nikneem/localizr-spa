@@ -9,8 +9,8 @@ import { MenubarModule } from 'primeng/menubar';
 import { AvatarModule } from 'primeng/avatar';
 import { Store } from '@ngxs/store';
 import { UserLoginSelectors } from '../../../../../states/user/user-selectors';
-import { IUserLoginStateModel } from '../../../../../states/user/user-state';
 import { MenuModule } from 'primeng/menu';
+import { IUserLoginStateModel } from '../../../../../states/user/user-models';
 @Component({
   selector: 'lcl-private-page-main-navigation',
   imports: [

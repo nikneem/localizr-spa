@@ -5,12 +5,20 @@ import { providePrimeNG } from 'primeng/config';
 import Material from '@primeng/themes/material';
 import { routes } from './app.routes';
 
-import { provideHttpClient, withInterceptors } from '@angular/common/http';
+import {
+  HTTP_INTERCEPTORS,
+  provideHttpClient,
+  withInterceptors,
+} from '@angular/common/http';
 import { provideTranslateService, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient } from '@angular/common/http';
 import { authConfig } from './auth/auth.config';
-import { authInterceptor, provideAuth } from 'angular-auth-oidc-client';
+import {
+  AuthInterceptor,
+  authInterceptor,
+  provideAuth,
+} from 'angular-auth-oidc-client';
 import { withNgxsReduxDevtoolsPlugin } from '@ngxs/devtools-plugin';
 import { withNgxsLoggerPlugin } from '@ngxs/logger-plugin';
 import { provideStore } from '@ngxs/store';
@@ -44,5 +52,6 @@ export const appConfig: ApplicationConfig = {
       withNgxsReduxDevtoolsPlugin(),
       withNgxsLoggerPlugin()
     ),
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
   ],
 };

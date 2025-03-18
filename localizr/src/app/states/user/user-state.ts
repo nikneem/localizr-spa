@@ -1,12 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Action, Selector, State, StateContext } from '@ngxs/store';
 import { SetLoginState } from './user-actions';
-
-export interface IUserLoginStateModel {
-  isAuthenticated: boolean;
-  displayName: string;
-  profilePictureUrl?: string;
-}
+import { IUserLoginStateModel } from './user-models';
+import { MembersService } from '../../services/members.service';
+import { tap } from 'rxjs';
 
 @State<IUserLoginStateModel>({
   name: 'LoginState',
@@ -17,6 +14,8 @@ export interface IUserLoginStateModel {
 })
 @Injectable()
 export class UserLoginState {
+  constructor(private membersService: MembersService) {}
+
   @Selector()
   static getTodoList(state: IUserLoginStateModel) {
     return state;
@@ -24,15 +23,25 @@ export class UserLoginState {
 
   @Action(SetLoginState)
   changeLoginState(
-    { getState, setState }: StateContext<IUserLoginStateModel>,
+    ctx: StateContext<IUserLoginStateModel>,
     { isLoggedIn, displayName, profilePictureUrl }: SetLoginState
   ) {
-    const state = getState();
-    setState({
-      ...state,
-      isAuthenticated: isLoggedIn,
-      displayName: displayName || 'unknown',
-      profilePictureUrl: profilePictureUrl,
-    });
+    return this.membersService
+      .resolveMember({
+        displayName: displayName,
+        emailAddress: 'unknown',
+        profilePictureUrl: profilePictureUrl,
+      })
+      .pipe(
+        tap((response) => {
+          if (response.isSuccess) {
+            ctx.patchState({
+              isAuthenticated: isLoggedIn,
+              displayName: response.result?.displayName || 'unknown',
+              profilePictureUrl: response.result?.profilePictureUrl,
+            });
+          }
+        })
+      );
   }
 }

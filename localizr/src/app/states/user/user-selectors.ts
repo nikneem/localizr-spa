@@ -1,5 +1,6 @@
 import { Selector } from '@ngxs/store';
-import { IUserLoginStateModel, UserLoginState } from './user-state';
+import { UserLoginState } from './user-state';
+import { IUserLoginStateModel } from './user-models';
 
 export class UserLoginSelectors {
   @Selector([UserLoginState])
