@@ -25,13 +25,26 @@
     </ng-template>
   </ng-template>
   <ng-template #end>
-    <div class="flex flex-row gap-1">
-      <p-button severity="secondary" size="small"
-        ><label translate="button.register"></label
-      ></p-button>
-      <p-button size="small" (click)="openIdConnectLogin()"
-        ><label translate="button.login"></label
-      ></p-button>
-    </div>
+    <ng-container *ngIf="isLoggedIn().isAuthenticated; else loginButtons">
+      <div class="flex flex-row gap-1">
+        <p-button
+          severity="secondary"
+          size="small"
+          (click)="openIdConnectLogout()"
+        >
+          <label translate="button.logout"></label>
+        </p-button>
+      </div>
+    </ng-container>
+    <ng-template #loginButtons>
+      <div class="flex flex-row gap-1">
+        <p-button severity="secondary" size="small"
+          ><label translate="button.register"></label
+        ></p-button>
+        <p-button size="small" (click)="openIdConnectLogin()"
+          ><label translate="button.login"></label
+        ></p-button>
+      </div>
+    </ng-template>
   </ng-template>
 </p-menubar>

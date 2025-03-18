@@ -1,7 +1,9 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { Router, RouterOutlet } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { Store } from '@ngxs/store';
 import { OidcSecurityService } from 'angular-auth-oidc-client';
+import { SetLoginState } from './states/user/user-actions';
 
 @Component({
   selector: 'lcl-root',
@@ -10,33 +12,26 @@ import { OidcSecurityService } from 'angular-auth-oidc-client';
   styleUrl: './app.component.scss',
 })
 export class AppComponent implements OnInit {
-  private readonly returnUrlSettingName = 'localizr.returnUrl';
-  private readonly oidcSecurityService = inject(OidcSecurityService);
-  private readonly router = inject(Router);
-
   title = 'localizr';
-  constructor(private translate: TranslateService) {
+
+  private oicsSecurityService = inject(OidcSecurityService);
+
+  constructor(private translate: TranslateService, private store: Store) {
     this.translate.addLangs(['en']);
     this.translate.setDefaultLang('en');
     this.translate.use('en');
   }
 
-  private getRedirectUrl(): string {
-    let defaultRedirectUrl = '/app';
-    let savedReturnUrl = sessionStorage.getItem(this.returnUrlSettingName);
-    if (savedReturnUrl) {
-      defaultRedirectUrl = savedReturnUrl;
-    }
-
-    sessionStorage.removeItem(this.returnUrlSettingName);
-    return defaultRedirectUrl;
-  }
-
   ngOnInit(): void {
-    this.oidcSecurityService.checkAuth().subscribe((authResult) => {
-      if (authResult.isAuthenticated) {
-        this.router.navigate([this.getRedirectUrl()]);
-      }
+    this.oicsSecurityService.checkAuth().subscribe((authResult) => {
+      console.log('is authenticated', authResult.isAuthenticated);
+      this.store.dispatch(
+        new SetLoginState(
+          authResult.isAuthenticated,
+          authResult.userData.name,
+          authResult.userData.picture
+        )
+      );
     });
   }
 }

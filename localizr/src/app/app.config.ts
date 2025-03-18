@@ -11,6 +11,10 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient } from '@angular/common/http';
 import { authConfig } from './auth/auth.config';
 import { authInterceptor, provideAuth } from 'angular-auth-oidc-client';
+import { withNgxsReduxDevtoolsPlugin } from '@ngxs/devtools-plugin';
+import { withNgxsLoggerPlugin } from '@ngxs/logger-plugin';
+import { provideStore } from '@ngxs/store';
+import { UserLoginState } from './states/user/user-state';
 
 const httpLoaderFactory: (http: HttpClient) => TranslateHttpLoader = (
   http: HttpClient
@@ -35,5 +39,10 @@ export const appConfig: ApplicationConfig = {
       },
     }),
     provideAuth(authConfig),
+    provideStore(
+      [UserLoginState],
+      withNgxsReduxDevtoolsPlugin(),
+      withNgxsLoggerPlugin()
+    ),
   ],
 };
