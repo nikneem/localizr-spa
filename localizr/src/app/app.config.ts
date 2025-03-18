@@ -9,20 +9,18 @@ import {
   HTTP_INTERCEPTORS,
   provideHttpClient,
   withInterceptors,
+  withInterceptorsFromDi,
 } from '@angular/common/http';
 import { provideTranslateService, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient } from '@angular/common/http';
 import { authConfig } from './auth/auth.config';
-import {
-  AuthInterceptor,
-  authInterceptor,
-  provideAuth,
-} from 'angular-auth-oidc-client';
+import { authInterceptor, provideAuth } from 'angular-auth-oidc-client';
 import { withNgxsReduxDevtoolsPlugin } from '@ngxs/devtools-plugin';
 import { withNgxsLoggerPlugin } from '@ngxs/logger-plugin';
 import { provideStore } from '@ngxs/store';
 import { UserLoginState } from './states/user/user-state';
+import { AuthInterceptor } from './shared/auth0-http-interceptor';
 
 const httpLoaderFactory: (http: HttpClient) => TranslateHttpLoader = (
   http: HttpClient
@@ -38,7 +36,7 @@ export const appConfig: ApplicationConfig = {
         preset: Material,
       },
     }),
-    provideHttpClient(withInterceptors([authInterceptor()])),
+    provideHttpClient(withInterceptorsFromDi()),
     provideTranslateService({
       loader: {
         provide: TranslateLoader,
