@@ -5,7 +5,7 @@ html,
 body {
   margin: 0;
   padding: 0;
-  font-family: "Quicksand", sans-serif;
+  font-family: "Outfit", sans-serif;
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
@@ -20,16 +20,63 @@ body {
 .flex-row {
   flex-direction: row;
 }
+.flex-row-center {
+  flex-direction: row;
+  align-items: center;
+}
 .gap-1 {
   gap: 0.5rem;
 }
 
+.muted {
+  color: var(--p-text-muted-color);
+}
+
+// Full page container
 .full-page-container {
   padding-top: 64px;
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
+  .full-page-panel {
+    max-width: 100%;
+    margin: 2rem;
+    h1,
+    h2 {
+      margin: 0;
+      font-weight: 100;
+    }
+    h1 {
+      font-size: 4rem;
+    }
+    h2 {
+      font-size: 2rem;
+    }
+    p {
+      margin: 0;
+      font-size: 1.4rem;
+      font-weight: 300;
+      color: var(--p-text-muted-color);
+    }
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .full-page-container {
+    .full-page-panel {
+      padding: 1rem;
+      max-width: 60%;
+    }
+  }
+}
+@media screen and (min-width: 1600px) {
+  .full-page-container {
+    .full-page-panel {
+      padding: 1rem;
+      max-width: 40%;
+    }
+  }
 }
 
 * {

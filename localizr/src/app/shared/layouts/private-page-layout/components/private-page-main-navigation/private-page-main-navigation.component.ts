@@ -1,26 +1,14 @@
-import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit, Signal } from '@angular/core';
-import { RouterModule } from '@angular/router';
-import { TranslateDirective } from '@ngx-translate/core';
 import { OidcSecurityService } from 'angular-auth-oidc-client';
 import { MenuItem } from 'primeng/api';
-import { ButtonModule } from 'primeng/button';
-import { MenubarModule } from 'primeng/menubar';
-import { AvatarModule } from 'primeng/avatar';
 import { Store } from '@ngxs/store';
 import { UserLoginSelectors } from '../../../../../states/user/user-selectors';
-import { MenuModule } from 'primeng/menu';
 import { IUserLoginStateModel } from '../../../../../states/user/user-models';
+import { SharedComponentsModule } from '../../../../shared-components/shared-components.module';
+import { RouterModule } from '@angular/router';
 @Component({
   selector: 'lcl-private-page-main-navigation',
-  imports: [
-    CommonModule,
-    AvatarModule,
-    RouterModule,
-    MenubarModule,
-    ButtonModule,
-    MenuModule,
-  ],
+  imports: [RouterModule, SharedComponentsModule],
   templateUrl: './private-page-main-navigation.component.html',
   styleUrl: './private-page-main-navigation.component.scss',
 })
@@ -56,6 +44,16 @@ export class PrivatePageMainNavigationComponent implements OnInit {
               this.navigateToProfile();
             },
           },
+          {
+            separator: true,
+          },
+          {
+            label: 'Logoff',
+            icon: 'pi pi-cog',
+            command: () => {
+              this.logoff();
+            },
+          },
         ],
       },
     ];
@@ -78,5 +76,11 @@ export class PrivatePageMainNavigationComponent implements OnInit {
 
   openIdConnectLogin() {
     this.oidcSecurityService.authorize();
+  }
+
+  logoff() {
+    this.oidcSecurityService.logoff().subscribe(() => {
+      console.log('Logged off');
+    });
   }
 }

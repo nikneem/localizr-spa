@@ -24,21 +24,28 @@ export class UserLoginState {
   @Action(SetLoginState)
   changeLoginState(
     ctx: StateContext<IUserLoginStateModel>,
-    { isLoggedIn, displayName, profilePictureUrl }: SetLoginState
+    {
+      isLoggedIn,
+      displayName,
+      profilePicture,
+      emailAddress,
+      emailAddressVerified,
+    }: SetLoginState
   ) {
     return this.membersService
       .resolveMember({
         displayName: displayName,
-        emailAddress: 'unknown',
-        profilePictureUrl: profilePictureUrl,
+        emailAddress: emailAddress,
+        emailAddressVerified: emailAddressVerified,
+        profilePicture: profilePicture,
       })
       .pipe(
         tap((response) => {
           if (response.isSuccess) {
             ctx.patchState({
               isAuthenticated: isLoggedIn,
-              displayName: response.result?.displayName || 'unknown',
-              profilePictureUrl: response.result?.profilePictureUrl,
+              displayName: response.data?.displayName || 'unknown',
+              profilePicture: response.data?.profilePicture,
             });
           }
         })

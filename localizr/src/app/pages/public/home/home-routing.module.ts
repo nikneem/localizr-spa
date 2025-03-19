@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeLandingPageComponent } from './home-landing-page/home-landing-page.component';
-import { PublicComponent } from '../../../shared/layouts/public/public.component';
 import { HomeFeaturesPageComponent } from './home-features-page/home-features-page.component';
 import { HomePricingPageComponent } from './home-pricing-page/home-pricing-page.component';
+import { PublicPageLayoutComponent } from '../../../shared/layouts/public-page-layout/public-page-layout.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: PublicComponent,
+    component: PublicPageLayoutComponent,
     children: [
       { path: '', component: HomeLandingPageComponent },
       { path: 'features', component: HomeFeaturesPageComponent },

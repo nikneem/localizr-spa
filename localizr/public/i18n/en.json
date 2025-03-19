@@ -1,4 +1,9 @@
 {
+  "app": {
+    "title": "Localizr",
+    "slogan": "Speak Every Language",
+    "teaser": "Skip the manual work! Localizr automates i18n translations with AI, keeping your app multilingual and up to date. Faster, smarter, and hassle-free!"
+  },
   "button": {
     "register": "Register",
     "login": "Login",
@@ -12,6 +17,10 @@
     "authresult": {
       "title": "Hold on",
       "message": "We\u0027re aligning the sun and the moon to make sure you are who you say you are."
+    },
+    "logoffresult": {
+      "title": "Logging off",
+      "message": "Releasing cosmic tension to make sure all tokens are lost in space... You're safe now"
     }
   },
   "error": "Error"

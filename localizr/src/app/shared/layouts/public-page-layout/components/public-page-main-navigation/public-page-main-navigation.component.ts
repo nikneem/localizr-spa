@@ -1,28 +1,19 @@
-import { CommonModule } from '@angular/common';
-import { Component, inject, OnInit, Signal } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Component, inject, Signal } from '@angular/core';
+import { SharedComponentsModule } from '../../../../shared-components/shared-components.module';
 import { MenuItem } from 'primeng/api';
-import { MenubarModule } from 'primeng/menubar';
-import { ButtonModule } from 'primeng/button';
-import { TranslateDirective } from '@ngx-translate/core';
-import { OidcSecurityService } from 'angular-auth-oidc-client';
-import { Selector, Store } from '@ngxs/store';
-import { UserLoginSelectors } from '../../../../../states/user/user-selectors';
 import { IUserLoginStateModel } from '../../../../../states/user/user-models';
+import { Store } from '@ngxs/store';
+import { UserLoginSelectors } from '../../../../../states/user/user-selectors';
+import { OidcSecurityService } from 'angular-auth-oidc-client';
+import { RouterModule } from '@angular/router';
 
 @Component({
-  selector: 'lcl-public-main-navigation',
-  imports: [
-    CommonModule,
-    RouterModule,
-    MenubarModule,
-    ButtonModule,
-    TranslateDirective,
-  ],
-  templateUrl: './public-main-navigation.component.html',
-  styleUrl: './public-main-navigation.component.scss',
+  selector: 'lcl-public-page-main-navigation',
+  imports: [SharedComponentsModule, RouterModule],
+  templateUrl: './public-page-main-navigation.component.html',
+  styleUrl: './public-page-main-navigation.component.scss',
 })
-export class PublicMainNavigationComponent implements OnInit {
+export class PublicPageMainNavigationComponent {
   items: MenuItem[] | undefined;
 
   isLoggedIn: Signal<IUserLoginStateModel>;

@@ -3,6 +3,8 @@ export class SetLoginState {
   constructor(
     public isLoggedIn: boolean,
     public displayName: string,
-    public profilePictureUrl?: string
+    public emailAddress: string,
+    public emailAddressVerified: boolean,
+    public profilePicture?: string
   ) {}
 }

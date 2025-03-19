@@ -1,7 +1,7 @@
 export interface ILocalizrResponse<T> {
   isSuccess: boolean;
   errorMessage?: string;
-  result?: T;
+  data?: T;
 }
 export interface ILocalizrListResponse<T> {
   isSuccess: boolean;

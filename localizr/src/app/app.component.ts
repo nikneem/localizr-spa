@@ -29,6 +29,8 @@ export class AppComponent implements OnInit {
         new SetLoginState(
           authResult.isAuthenticated,
           authResult.userData.name,
+          authResult.userData.email,
+          authResult.userData.email_verified,
           authResult.userData.picture
         )
       );

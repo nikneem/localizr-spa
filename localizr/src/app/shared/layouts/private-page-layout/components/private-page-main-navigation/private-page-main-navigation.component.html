@@ -25,8 +25,7 @@
     </ng-template>
   </ng-template>
   <ng-template #end>
-    <div class="flex flex-row gap-1">
-      <p-avatar [image]="userLoginState().profilePictureUrl" shape="circle" />
+    <div class="flex flex-row-center gap-1">
       <p-menu #menu [model]="profileMenuItems" [popup]="true">
         <ng-template #submenuheader let-item>
           <span class="text-primary font-bold">{{ item.label }}</span>
@@ -43,8 +42,13 @@
           </a>
         </ng-template>
       </p-menu>
-      <p-button (click)="menu.toggle($event)" size="small">
-        <span>{{ userLoginState().displayName }}</span>
+      <p-button
+        (click)="menu.toggle($event)"
+        size="small"
+        [outlined]="true"
+        [pTooltip]="userLoginState().displayName"
+      >
+        <p-avatar [image]="userLoginState().profilePicture" shape="circle" />
       </p-button>
     </div>
   </ng-template>
