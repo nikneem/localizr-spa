@@ -19,10 +19,27 @@ export const routes: Routes = [
   },
   {
     path: 'app',
-    loadChildren: () =>
-      import('./pages/private/dashboard/dashboard.module').then(
-        (m) => m.DashboardModule
-      ),
     canActivate: [AuthorizationGuard],
+    children: [
+      {
+        path: 'dashboard',
+        loadChildren: () =>
+          import('./pages/private/dashboard/dashboard.module').then(
+            (m) => m.DashboardModule
+          ),
+      },
+      {
+        path: 'projects',
+        loadChildren: () =>
+          import('./pages/private/projects/projects.module').then(
+            (m) => m.ProjectsModule
+          ),
+      },
+      // {
+      //   path: '**',
+      //   redirectTo: 'dashboard',
+      //   pathMatch: 'full',
+      // },
+    ],
   },
 ];

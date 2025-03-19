@@ -24,7 +24,6 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.oicsSecurityService.checkAuth().subscribe((authResult) => {
-      console.log('is authenticated', authResult.isAuthenticated);
       this.store.dispatch(
         new SetLoginState(
           authResult.isAuthenticated,

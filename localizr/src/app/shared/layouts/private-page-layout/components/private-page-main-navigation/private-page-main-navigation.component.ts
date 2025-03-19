@@ -49,7 +49,7 @@ export class PrivatePageMainNavigationComponent implements OnInit {
           },
           {
             label: 'Logoff',
-            icon: 'pi pi-cog',
+            icon: 'pi pi-sign-out',
             command: () => {
               this.logoff();
             },
@@ -65,11 +65,11 @@ export class PrivatePageMainNavigationComponent implements OnInit {
     this.items = [
       {
         label: 'Dashboard',
-        route: '/app',
+        route: '/app/dashboard',
       },
       {
         label: 'Projects',
-        route: 'projects',
+        route: '/app/projects',
       },
     ];
   }

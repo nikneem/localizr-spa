@@ -18,7 +18,7 @@ export class AuthRedirectPageComponent implements OnInit {
   constructor() {}
 
   private getRedirectUrl(): string {
-    let defaultRedirectUrl = '/app';
+    let defaultRedirectUrl = '/app/dashboard';
     let savedReturnUrl = sessionStorage.getItem(this.returnUrlSettingName);
     if (savedReturnUrl) {
       defaultRedirectUrl = savedReturnUrl;

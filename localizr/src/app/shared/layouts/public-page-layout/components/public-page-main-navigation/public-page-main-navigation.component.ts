@@ -5,7 +5,7 @@ import { IUserLoginStateModel } from '../../../../../states/user/user-models';
 import { Store } from '@ngxs/store';
 import { UserLoginSelectors } from '../../../../../states/user/user-selectors';
 import { OidcSecurityService } from 'angular-auth-oidc-client';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'lcl-public-page-main-navigation',
@@ -25,6 +25,7 @@ export class PublicPageMainNavigationComponent {
   }
 
   private readonly oidcSecurityService = inject(OidcSecurityService);
+  private readonly router = inject(Router);
 
   ngOnInit() {
     this.items = [
@@ -45,14 +46,15 @@ export class PublicPageMainNavigationComponent {
       },
     ];
   }
-
+  navigateMainDashboard() {
+    this.router.navigate(['/app/dashboard']);
+  }
   openIdConnectLogin() {
     this.oidcSecurityService.authorize();
   }
   openIdConnectLogout() {
-    alert('a');
     this.oidcSecurityService.logoffAndRevokeTokens().subscribe((result) => {
-      alert('c');
+      console.log('Logged out');
     });
   }
 }

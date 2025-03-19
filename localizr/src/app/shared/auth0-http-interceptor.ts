@@ -24,7 +24,6 @@ export class AuthInterceptor implements HttpInterceptor {
     let copiedRequest = request;
     this.oidc.getAccessToken().subscribe((tkn) => {
       this.jwtToken = tkn;
-      console.log('Token: ', this.jwtToken);
     });
 
     this.oidc.getConfiguration().subscribe((config) => {

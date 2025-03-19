@@ -6,7 +6,8 @@ import { MenuModule } from 'primeng/menu';
 import { MenubarModule } from 'primeng/menubar';
 import { TooltipModule } from 'primeng/tooltip';
 import { TranslateDirective, TranslatePipe } from '@ngx-translate/core';
-
+import { TableModule } from 'primeng/table';
+import { PanelModule } from 'primeng/panel';
 @NgModule({
   declarations: [],
   imports: [
@@ -18,6 +19,8 @@ import { TranslateDirective, TranslatePipe } from '@ngx-translate/core';
     TooltipModule,
     TranslatePipe,
     TranslateDirective,
+    TableModule,
+    PanelModule,
   ],
   exports: [
     CommonModule,
@@ -28,6 +31,8 @@ import { TranslateDirective, TranslatePipe } from '@ngx-translate/core';
     TooltipModule,
     TranslatePipe,
     TranslateDirective,
+    TableModule,
+    PanelModule,
   ],
 })
 export class SharedComponentsModule {}

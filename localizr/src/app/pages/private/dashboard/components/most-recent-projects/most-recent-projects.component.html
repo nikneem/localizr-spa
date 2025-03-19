@@ -1,0 +1,29 @@
+<p-table [value]="projects" [tableStyle]="{ 'min-width': '50rem' }">
+  <ng-template #caption>
+    <div class="flex items-center justify-between">
+      <span
+        class="text-xl font-bold"
+        translate="dashboard.most-recent-projects.title"
+      ></span>
+    </div>
+  </ng-template>
+  <ng-template #header>
+    <tr>
+      <th translate="dashboard.most-recent-projects.name"></th>
+      <th translate="dashboard.most-recent-projects.date"></th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-product>
+    <tr>
+      <td>{{ product.name }}</td>
+      <td>{{ product.lastWorkedOn }}</td>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="emptymessage">
+    <tr app-table-empty-message>
+      <td colspan="2" class="muted center">
+        <span translate="dashboard.most-recent-projects.no-data"></span>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>

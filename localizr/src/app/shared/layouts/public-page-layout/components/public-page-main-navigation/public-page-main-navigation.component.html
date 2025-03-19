@@ -30,6 +30,13 @@
         <p-button
           severity="secondary"
           size="small"
+          (click)="navigateMainDashboard()"
+        >
+          <label translate="button.goto-app"></label>
+        </p-button>
+        <p-button
+          severity="secondary"
+          size="small"
           (click)="openIdConnectLogout()"
         >
           <label translate="button.logout"></label>

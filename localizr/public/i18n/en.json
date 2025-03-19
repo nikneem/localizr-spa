@@ -7,7 +7,8 @@
   "button": {
     "register": "Register",
     "login": "Login",
-    "logout": "Logout"
+    "logout": "Logout",
+    "goto-app": "Your dashboard"
   },
   "auth": {
     "unauthorized": {
@@ -23,5 +24,14 @@
       "message": "Releasing cosmic tension to make sure all tokens are lost in space... You're safe now"
     }
   },
+  "dashboard": {
+    "most-recent-projects": {
+      "title": "Most Recent Projects",
+      "name": "Name",
+      "date": "Date",
+      "no-data": "There are not projects you have recently worked"
+    }
+  },
+
   "error": "Error"
 }
